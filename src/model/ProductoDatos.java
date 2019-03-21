@@ -1,20 +1,22 @@
 package model;
 
-
+import java.io.File;
+import java.util.Scanner;
 
 public class ProductoDatos {
 	
-
-	
-	
 	// RESPUESTA A LA PREGUNTA (B) - metódos para leer los tres ficheros de texto
 	
-	
+
 	
 	
 	
 	
 	// RESPUESTA A LA PREGUNTA (C) -  método para grabar en un fichero de tipo object todos los productos individualmente
+	
+	
+	
+	
 	
 	
 	
