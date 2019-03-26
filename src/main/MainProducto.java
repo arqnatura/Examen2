@@ -3,17 +3,19 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import model.Producto;
-
-
 
 
 
@@ -103,15 +105,70 @@ public class MainProducto {
 	
 		// RESPUESTA A LA PREGUNTA (C) -  método para grabar en un fichero de tipo object todos los productos individualmente
 
+	public void creaFicheroObjetoProductos() {
+		try {
+			BufferedReader fichero;
+			fichero = new BufferedReader(new FileReader("ficheros/productos.txt"));
+			FileOutputStream salida = new FileOutputStream("ficheros/productos.obj");
+			ObjectOutputStream objetos = new ObjectOutputStream(salida);
 
+			String registro;
+			while ((registro = fichero.readLine()) != null) {
+				String[] campos = registro.split("#");
+				Producto producto = new Producto(Integer.parseInt(campos[0]), campos[1], Integer.parseInt(campos[2]));
+				producto.setId(0);
+				producto.setNombre(null);
+				producto.setStock(0);
+				producto.setPrecio(0);
+				producto.setIdCategoria(0);
+				producto.setIdAlmacen(0);
+				objetos.writeObject(producto);
+			}
+			fichero.close();
+			System.out.println("Fin de la lectura del fichero");
 
+		} catch (FileNotFoundException excepcion) {
+			System.out.println("fichero no encontrado");
 
+		} catch (IOException e) {
+			System.out.println("IO Excepcion");
+		}
 
+	}
 
 
 
 	// RESPUESTA A LA PREGUNTA (D) - método para leer el archivo objecto de productos.obj y lo almacene en un HashMap<Integer,Producto>
 
+	public void leerObjetosProductos() {
+		ObjectInputStream objetos = null;
+		try {
+			objetos = new ObjectInputStream(new FileInputStream("ficheros/productos.obj"));
+
+			while (true) {
+				Producto producto = (Producto) objetos.readObject();
+				System.out.println(producto.getNombre());
+			}
+
+		} catch (FileNotFoundException e) {
+			System.out.println("error1");
+		} catch (IOException e) {
+			System.out.println("Fin de la lectura");
+			try {
+				objetos.close();
+			} catch (IOException e1) {
+
+			}
+		} catch (ClassNotFoundException e) {
+			System.out.println("clase no encontrada");
+		} catch (java.lang.ClassCastException e) {
+			System.out.println("Casting imposible");
+		}
+
+	}
+	
+	
+	
 	
 	
 
@@ -134,6 +191,8 @@ public class MainProducto {
 		// ejercicio.creaListaProductos("ficheros/productos.txt");
 		// System.out.println("------------------------------------------------------------");
 		
+		//ejercicio.creaFicheroObjetoProductos();
+		ejercicio.leerObjetosProductos();
 
 		// RESPUESTA A LA PREGUNTA (E.1) - mostrar listado de productos sin filtros (ID    NOMBRE PRODUCTO   PRECIO   STOCK   CATEGORIA  ALMACEN)
 		

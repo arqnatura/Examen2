@@ -15,6 +15,12 @@ public class Producto {
 	private int idAlmacen;
 	
 	
+	public Producto(int id, String nombre, int stock) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.stock = stock;
+	}
 	
 	public int getId() {
 		return id;

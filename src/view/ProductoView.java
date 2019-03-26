@@ -1,7 +1,6 @@
 package view;
 
 
-
 // RESPUESTA A LA PREGUNTA (E)
 
 public class ProductoView {
