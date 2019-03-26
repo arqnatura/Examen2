@@ -3,12 +3,16 @@ package main;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.KeyStore.Entry;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import model.Producto;
+
 
 
 
@@ -20,7 +24,7 @@ public class MainProducto {
 	// RESPUESTA A LA PREGUNTA (B) - metódos para leer los tres ficheros de texto
 	
 	
-	public void lecturaFicheros (String rutafichero) {
+/*	public void lecturaFicheros (String rutafichero) {
 		
 											// Fichero del que queremos leer
 	//File fichero = new File("ficheros/almacenes.txt");
@@ -50,12 +54,12 @@ public class MainProducto {
 		}
 	}
 }
-	
+	*/
 	
 	// RESPUESTA A LA PREGUNTA (B) - y almacenarlos (return) en los siguientes tipos:
 	//					(B-1) productos.txt -> ArrayList<Producto>
 	
-	public ArrayList<Producto> creaListaProductos (String rutafichero)
+/*	public ArrayList<Producto> creaListaProductos (String rutafichero)
 	{
 		ArrayList<Producto> lista = new ArrayList<Producto>();
 		
@@ -91,28 +95,13 @@ public class MainProducto {
 		return lista;
 	}
 	
-
+*/
 	// RESPUESTA A LA PREGUNTA (B) - (B-2) categorias.txt-> ArrayList<String>
-	
-	
-	
-		
-	
-	
 	
 	// RESPUESTA A LA PREGUNTA (B) - (B-3) almacenes.txt-> HashMap<String, String>
 	
 	
-	
-	
-	
-
-	
-	
-	
-	
-	
-// RESPUESTA A LA PREGUNTA (C) -  método para grabar en un fichero de tipo object todos los productos individualmente
+		// RESPUESTA A LA PREGUNTA (C) -  método para grabar en un fichero de tipo object todos los productos individualmente
 
 
 
@@ -121,7 +110,7 @@ public class MainProducto {
 
 
 
-// RESPUESTA A LA PREGUNTA (D) - método para leer el archivo objecto de productos.obj y lo almacene en un HashMap<Integer,Producto>
+	// RESPUESTA A LA PREGUNTA (D) - método para leer el archivo objecto de productos.obj y lo almacene en un HashMap<Integer,Producto>
 
 	
 	
@@ -131,19 +120,20 @@ public class MainProducto {
 		MainProducto ejercicio = new MainProducto();
 		
 		// RESPUESTA A LA PREGUNTA (B) - metódos para leer los tres ficheros de texto
-		ejercicio.lecturaFicheros("ficheros/almacenes.txt");
+		/* ejercicio.lecturaFicheros("ficheros/almacenes.txt");
 		System.out.println("------------------------------------------------------------");
 		ejercicio.lecturaFicheros("ficheros/categorias.txt");
 		System.out.println("------------------------------------------------------------");
 		ejercicio.lecturaFicheros("ficheros/productos.txt");
 		System.out.println("------------------------------------------------------------");
-		
+		*/
 		//Recorre el diectorio
 	    //	File inputFolder = new File("c:/");
 	    //	traverse(inputFolder, "");
 
-		ejercicio.creaListaProductos("ficheros/productos.txt");
-		System.out.println("------------------------------------------------------------");
+		// ejercicio.creaListaProductos("ficheros/productos.txt");
+		// System.out.println("------------------------------------------------------------");
+		
 
 		// RESPUESTA A LA PREGUNTA (E.1) - mostrar listado de productos sin filtros (ID    NOMBRE PRODUCTO   PRECIO   STOCK   CATEGORIA  ALMACEN)
 		
