@@ -15,7 +15,6 @@ public class ProductoView {
 	
 
 	// RESPUESTA A LA PREGUNTA (E.1) - mostrar listado de productos sin filtros (ID    NOMBRE PRODUCTO   PRECIO   STOCK   CATEGORIA  ALMACEN)
-	ProductoView datosController = new ProductoView();
 	
 	public void mostrarListado(ArrayList<Producto> creaListaProductos, ArrayList<Categoria> creaListaCategorias, ArrayList<Almacen> creaListaAlmacenes) {
 		System.out.println("ID \t NOMBRE PRODUCTO \t PRECIO \t STOCK \t CATEGORIA \t ALMACEN");

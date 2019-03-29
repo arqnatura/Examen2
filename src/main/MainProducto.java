@@ -18,7 +18,6 @@ import java.util.Scanner;
 import model.Almacen;
 import model.Categoria;
 import model.Producto;
-
 import view.ProductoView;
 
 
@@ -272,6 +271,7 @@ public class MainProducto {
 	public static void main(String[] args) {
 		
 		MainProducto ejercicio = new MainProducto();
+		ProductoView view = new ProductoView();
 		
 		// RESPUESTA A LA PREGUNTA (B) - metódos para leer los tres ficheros de texto
 		/* ejercicio.lecturaFicheros("ficheros/almacenes.txt");
