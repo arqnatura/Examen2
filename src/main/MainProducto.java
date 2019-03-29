@@ -28,7 +28,7 @@ public class MainProducto {
 	// RESPUESTA A LA PREGUNTA (B) - metódos para leer los tres ficheros de texto
 	
 	
-	public void lecturaFicheros (String rutafichero) {
+/*	public void lecturaFicheros (String rutafichero) {
 		
 											// Fichero del que queremos leer
 	//File fichero = new File("ficheros/almacenes.txt");
@@ -58,7 +58,7 @@ public class MainProducto {
 		}
 	}
 }
-	
+*/	
 	public void lecturaFicheros3 (String rutafichero1, String rutafichero2, String rutafichero3) {
 		
 		// Fichero del que queremos leer
@@ -110,7 +110,7 @@ public class MainProducto {
 						lista.add(e);
 					}
 					fichero.close();
-					System.out.println("Fin lectura fichero");
+					System.out.println("Fin CREA lista CATEGORIAS");
 			
 					System.out.println(lista);
 					

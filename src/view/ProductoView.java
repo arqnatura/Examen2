@@ -17,8 +17,8 @@ public class ProductoView {
 	// RESPUESTA A LA PREGUNTA (E.1) - mostrar listado de productos sin filtros (ID    NOMBRE PRODUCTO   PRECIO   STOCK   CATEGORIA  ALMACEN)
 	
 	public void mostrarListado(ArrayList<Producto> creaListaProductos, ArrayList<Categoria> creaListaCategorias, ArrayList<Almacen> creaListaAlmacenes) {
-		System.out.println("ID \t NOMBRE PRODUCTO \t PRECIO \t STOCK \t CATEGORIA \t ALMACEN");
-		System.out.println("== \t =============== \t ====== \t ===== \t ========= \t =======");
+		System.out.println("ID \t NOMBRE PRODUCTO \t\t PRECIO \t STOCK \t CATEGORIA \t ALMACEN");
+		System.out.println("== \t =============== \t\t ====== \t ===== \t ========= \t =======");
 		
 		for(int i = 0; i < creaListaProductos.size(); i++) {
 			Producto unProducto = creaListaProductos.get(i);
@@ -32,7 +32,7 @@ public class ProductoView {
 			Categoria nombreCategoria = creaListaCategorias.get(idCategoria-1);
 			//String nombreAlmacen = creaListaAlmacenes.get(idAlmacen +"");
 				
-			System.out.println(id + "\t " + nombreProducto + " \t\t" + precio + " \t\t" + stock + " \t" + nombreCategoria + "\t " + idAlmacen);
+			System.out.println(id + "\t " + nombreProducto + " \t\t\t " + precio + " \t\t" + stock + " \t" + nombreCategoria + "\t " + idAlmacen);
 			
 		}
 	}
