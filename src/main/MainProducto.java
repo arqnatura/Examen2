@@ -196,6 +196,38 @@ public class MainProducto {
 
 	// RESPUESTA A LA PREGUNTA (B) - (B-2) categorias.txt-> ArrayList<String>
 	
+	public ArrayList<String> ListaCategoria ()
+	{
+		ArrayList<String> listaCategorias = new ArrayList<String>();
+
+				try {
+					FileReader fr = new FileReader("ficheros/categorias.txt");
+					BufferedReader br = new BufferedReader(fr);			
+					String lineaFichero;
+					while((lineaFichero = br.readLine()) !=null) {
+						String[] arrayLineaFichero = lineaFichero.split("#");
+						String nombreCategoria = arrayLineaFichero[1];						
+						listaCategorias.add(nombreCategoria);		
+					}		
+					br.close();
+					fr.close();
+					System.out.println("Fin lectura fichero");
+			
+					System.out.println(listaCategorias);
+					
+			} catch (NumberFormatException e) {
+				System.out.println("Excepción Formato.nulll");
+				e.printStackTrace();
+			} catch (IOException e) {
+				System.out.println("IOException.null");
+				e.printStackTrace();
+			}		
+
+		return listaCategorias;
+	}
+	
+	
+	
 	// RESPUESTA A LA PREGUNTA (B) - (B-3) almacenes.txt-> HashMap<String, String>
 	
 	
@@ -292,19 +324,22 @@ public class MainProducto {
 		// ejercicio.leerObjetosProductos();
 
 		// RESPUESTA A LA PREGUNTA (E.1) - mostrar listado de productos sin filtros (ID    NOMBRE PRODUCTO   PRECIO   STOCK   CATEGORIA  ALMACEN)
-		ejercicio.lecturaFicheros3("ficheros/productos.txt", "ficheros/categorias.txt", "ficheros/almacenes.txt");
+		/*ejercicio.lecturaFicheros3("ficheros/productos.txt", "ficheros/categorias.txt", "ficheros/almacenes.txt");
 		ejercicio.creaListaProductos("ficheros/productos.txt");
 		ejercicio.creaListaCategorias("ficheros/categorias.txt");		
 		ejercicio.creaListaAlmacenes("ficheros/almacenes.txt");
-
 		
+	
 		ArrayList<Producto> creaListaProductos = ejercicio.creaListaProductos("ficheros/productos.txt");
 		ArrayList<Categoria> creaListaCategorias = ejercicio.creaListaCategorias("ficheros/categorias.txt");		
 		ArrayList<Almacen> creaListaAlmacenes = ejercicio.creaListaAlmacenes("ficheros/almacenes.txt");
 
 		
 		view.mostrarListado (creaListaProductos, creaListaCategorias, creaListaAlmacenes);
-				
+				*/
+		
+		
+		ejercicio.ListaCategoria();
 		System.out.println("------------------------------------------------------------");
 
 		// RESPUESTA A LA PREGUNTA (E.2) - mostrar listado de productos filtrado por una categoria, igual que el de antes pero sólo sale una categoría concreta
