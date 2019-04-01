@@ -59,19 +59,19 @@ public class MainProducto {
 	}
 }
 */	
-	public void lecturaFicheros3 (String rutafichero1, String rutafichero2, String rutafichero3) {
+/*	public void lecturaFicheros3 (String rutafichero1, String rutafichero2, String rutafichero3) {
 		
-		// Fichero del que queremos leer
-		//File fichero = new File("ficheros/almacenes.txt");
+															// Fichero del que queremos leer
+								//File fichero = new File("ficheros/almacenes.txt");
 		File fichero = new File(rutafichero1, rutafichero2);	
 			Scanner s = null;
 
 			try {
-		// Leemos el contenido del fichero
+															// Leemos el contenido del fichero
 					System.out.println("... Leemos el contenido del fichero ...");
 						s = new Scanner(fichero);
 
-		// Leemos linea a linea el fichero
+															// Leemos linea a linea el fichero
 						while (s.hasNextLine()) {
 							String linea = s.nextLine(); 	// Guardamos la linea en un String
 							System.out.println(linea);      // Imprimimos la linea
@@ -80,7 +80,7 @@ public class MainProducto {
 			} catch (Exception ex) {
 				System.out.println("Mensaje: " + ex.getMessage());
 			} finally {
-				// Cerramos el fichero tanto si la lectura ha sido correcta o no
+								//Cerramos el fichero tanto si la lectura ha sido correcta o no
 				try {
 					if (s != null)
 						s.close();
@@ -89,14 +89,13 @@ public class MainProducto {
 				}
 			}
 	}	
-	
+*/	
 	
 	// RESPUESTA A LA PREGUNTA (B) - y almacenarlos (return) en los siguientes tipos:
 	//					(B-1) productos.txt -> ArrayList<Producto>
 	
-	public ArrayList<Categoria> creaListaCategorias (String rutafichero)
-	{
-		ArrayList<Categoria> lista = new ArrayList<Categoria>();
+	public ArrayList<String> creaListaCategorias (String rutafichero) {
+		ArrayList<String> lista = new ArrayList<String>();
 						
 			try {
 				BufferedReader fichero = new BufferedReader(new FileReader(rutafichero));
@@ -104,15 +103,14 @@ public class MainProducto {
 
 					while ((registro = fichero.readLine()) != null) {
 						String[] campos = registro.split("#");
-						Categoria e = new Categoria(0, registro);
-						e.setIdCategoria(Integer.parseInt(campos[0]));
-						e.setNombreCategoria(campos[1]);
-						lista.add(e);
+						String nombreCategoria = campos [1];
+						
+						lista.add(nombreCategoria);
+
 					}
 					fichero.close();
-					System.out.println("Fin CREA lista CATEGORIAS");
-			
-					System.out.println(lista);
+								// System.out.println("Fin CREA lista CATEGORIAS");
+								// System.out.println(lista);
 					
 			} catch (NumberFormatException e) {
 				System.out.println("Excepción Formato.nulll");
@@ -121,11 +119,33 @@ public class MainProducto {
 				System.out.println("IOException.null");
 				e.printStackTrace();
 			}		
-
 		return lista;
 	}		
 	
-	public ArrayList<Almacen> creaListaAlmacenes (String rutafichero)
+	// categorias.txt-> ArrayList<String>
+	public ArrayList<String> listadoCategorias(){
+		ArrayList<String> listadoCategoria= new ArrayList<String>();
+		
+		try {
+			FileReader fr = new FileReader("ficheros/categorias.txt");
+			BufferedReader br = new BufferedReader(fr);			
+			String lineaFichero;
+			while((lineaFichero = br.readLine()) !=null) {
+				String[] arrayLineaFichero = lineaFichero.split("#");
+				String nombreCategoria = arrayLineaFichero[1];						
+				listadoCategoria.add(nombreCategoria);		
+			}		
+			br.close();
+			fr.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error FileNotFound");
+		} catch (IOException e) {
+			System.out.println("Error I/O");
+		}	
+		return listadoCategoria;
+	}
+	
+/*	public ArrayList<Almacen> creaListaAlmacenes (String rutafichero)
 	{
 		ArrayList<Almacen> lista = new ArrayList<Almacen>();
 						
@@ -155,7 +175,7 @@ public class MainProducto {
 
 		return lista;
 	}	
-	
+*/	
 	
 	public ArrayList<Producto> creaListaProductos (String rutafichero)
 	{
@@ -178,9 +198,8 @@ public class MainProducto {
 						lista.add(e);
 					}
 					fichero.close();
-					System.out.println("Fin lectura fichero");
-			
-					System.out.println(lista);
+								//	System.out.println("Fin listado fichero PRODUCTOS");
+								//	System.out.println(lista);
 					
 			} catch (NumberFormatException e) {
 				System.out.println("Excepción Formato.nulll");
@@ -230,6 +249,30 @@ public class MainProducto {
 	
 	// RESPUESTA A LA PREGUNTA (B) - (B-3) almacenes.txt-> HashMap<String, String>
 	
+	public HashMap<String, String> creaListaAlmacenes(){
+		HashMap<String, String> listadoAlmacen= new HashMap<String, String>();
+				
+			try {
+				FileReader fr = new FileReader("ficheros/almacenes.txt");
+				BufferedReader br = new BufferedReader(fr);			
+				String lineaFichero;
+				while((lineaFichero = br.readLine()) !=null) {
+					String[] arrayLineaFichero = lineaFichero.split("#");
+					String idAlmacen = arrayLineaFichero[0];
+					String nombreAlmacen = arrayLineaFichero[1];				
+					listadoAlmacen.put(idAlmacen, nombreAlmacen);					
+				}		
+				br.close();
+				fr.close();
+			} catch (FileNotFoundException e) {
+				System.out.println("Error FileNotFound");
+			} catch (IOException e) {
+				System.out.println("Error I/O");
+			}	
+			return listadoAlmacen;
+		}
+	
+		
 	
 		// RESPUESTA A LA PREGUNTA (C) -  método para grabar en un fichero de tipo object todos los productos individualmente
 
@@ -296,16 +339,13 @@ public class MainProducto {
 	}
 	
 	
-	
-	
-	
 
 	public static void main(String[] args) {
 		
 		MainProducto ejercicio = new MainProducto();
 		ProductoView view = new ProductoView();
 		
-		// RESPUESTA A LA PREGUNTA (B) - metódos para leer los tres ficheros de texto
+	// RESPUESTA A LA PREGUNTA (B) - metódos para leer los tres ficheros de texto
 		/* ejercicio.lecturaFicheros("ficheros/almacenes.txt");
 		System.out.println("------------------------------------------------------------");
 		ejercicio.lecturaFicheros("ficheros/categorias.txt");
@@ -323,56 +363,65 @@ public class MainProducto {
 		// ejercicio.creaFicheroObjetoProductos();
 		// ejercicio.leerObjetosProductos();
 
-		// RESPUESTA A LA PREGUNTA (E.1) - mostrar listado de productos sin filtros (ID    NOMBRE PRODUCTO   PRECIO   STOCK   CATEGORIA  ALMACEN)
-		/*ejercicio.lecturaFicheros3("ficheros/productos.txt", "ficheros/categorias.txt", "ficheros/almacenes.txt");
-		ejercicio.creaListaProductos("ficheros/productos.txt");
+	// RESPUESTA A LA PREGUNTA (E.1) - mostrar listado de productos sin filtros (ID    NOMBRE PRODUCTO   PRECIO   STOCK   CATEGORIA  ALMACEN)
+		// ejercicio.lecturaFicheros3("ficheros/productos.txt", "ficheros/categorias.txt", "ficheros/almacenes.txt");
+		
+/*		ejercicio.creaListaProductos("ficheros/productos.txt");
 		ejercicio.creaListaCategorias("ficheros/categorias.txt");		
 		ejercicio.creaListaAlmacenes("ficheros/almacenes.txt");
-		
-	
+			
 		ArrayList<Producto> creaListaProductos = ejercicio.creaListaProductos("ficheros/productos.txt");
 		ArrayList<Categoria> creaListaCategorias = ejercicio.creaListaCategorias("ficheros/categorias.txt");		
 		ArrayList<Almacen> creaListaAlmacenes = ejercicio.creaListaAlmacenes("ficheros/almacenes.txt");
+*/	
+	ArrayList<Producto> creaListaProductos = ejercicio.creaListaProductos("ficheros/productos.txt");
+		//System.out.println(listadoProductos);
+	ArrayList<String> creaListaCategorias = ejercicio.creaListaCategorias("ficheros/categorias.txt");
+		//System.out.println(listadoCategorias);
+	HashMap<String, String> creaListaAlmacenes = ejercicio.creaListaAlmacenes();
+		//System.out.println(listadoAlmacenes);
 
+		//System.out.println(lecturaFicheroObjetos);
 		
 		view.mostrarListado (creaListaProductos, creaListaCategorias, creaListaAlmacenes);
-				*/
+
 		
-		
-		ejercicio.ListaCategoria();
+		//ejercicio.ListaCategoria();
 		System.out.println("------------------------------------------------------------");
 
-		// RESPUESTA A LA PREGUNTA (E.2) - mostrar listado de productos filtrado por una categoria, igual que el de antes pero sólo sale una categoría concreta
+	// RESPUESTA A LA PREGUNTA (E.2) - mostrar listado de productos filtrado por una categoria, 
+		// igual que el de antes pero sólo sale una categoría concreta
 		
-		
+		view.mostrarListadoPorUnaCategoria(creaListaProductos, creaListaCategorias, creaListaAlmacenes, "Electrónica");
 		System.out.println("------------------------------------------------------------");
 
-		// RESPUESTA A LA PREGUNTA (E.3) - mostrar listado de productos ordenados por categorías
+	// RESPUESTA A LA PREGUNTA (E.3) - mostrar listado de productos ordenados por categorías
 		
-		
+		view.mostrarListadoProductosOrdenadosPorCategorias(creaListaProductos, creaListaCategorias, creaListaAlmacenes);
 		System.out.println("------------------------------------------------------------");
 
-		// RESPUESTA A LA PREGUNTA (E.4) - mostrar listado de productos ordenados por almacenes
+	// RESPUESTA A LA PREGUNTA (E.4) - mostrar listado de productos ordenados por almacenes
 		
-		
+//		view.mostrarListadoProductosOrdenadosPorAlmacenes(creaListaProductos, creaListaCategorias, creaListaAlmacenes);
 		System.out.println("------------------------------------------------------------");
 
-		// RESPUESTA A LA PREGUNTA (E.5) - mostrar los productos que tiene un almacén concreto
+	// RESPUESTA A LA PREGUNTA (E.5) - mostrar los productos que tiene un almacén concreto
 		
-		
+		view.mostrarListadoProductosPorUnAlmacen(creaListaProductos, creaListaCategorias, creaListaAlmacenes, "44");
 		System.out.println("------------------------------------------------------------");
 
-		// RESPUESTA A LA PREGUNTA (E.6) - mostrar el stock total de la empresa
+	// RESPUESTA A LA PREGUNTA (E.6) - mostrar el stock total de la empresa
 		
-		
+		view.mostrarStockTotal(creaListaProductos);
 		System.out.println("------------------------------------------------------------");
 
-		// RESPUESTA A LA PREGUNTA (E.7) - mostrar el stock de productos que tiene cada almacen
+	// RESPUESTA A LA PREGUNTA (E.7) - mostrar el stock de productos que tiene cada almacen
 		
-		
+		view.mostrarStockPorAlmacenes(creaListaProductos, creaListaAlmacenes);
 		System.out.println("------------------------------------------------------------");
 
-		// RESPUESTA A LA PREGUNTA (E.8) - mostrar el stock de productos que tiene cada categoría
+	// RESPUESTA A LA PREGUNTA (E.8) - mostrar el stock de productos que tiene cada categoría
 		
+		view.mostrarStockPorCategorias(creaListaProductos, creaListaCategorias);
 	}
 }
