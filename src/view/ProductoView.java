@@ -3,7 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import main.MainProducto;
+import main.examen;
 import model.Almacen;
 import model.Categoria;
 import model.Producto;
